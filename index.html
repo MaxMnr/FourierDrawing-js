@@ -32,42 +32,38 @@
     </header>
     <script src="https://maximemunari.fr/scripts/navbar.js"></script>
 
-    <section class="project-description">
-      <hr width="100%" size="2px" color="white" />
-      <hr width="100%" size="1px" color="white" />
-      <h1 class="project-title">Fourier Drawing</h1>
-      <hr width="100%" size="1px" color="white" />
-      <hr width="100%" size="2px" color="white" />
-      </br></br></br></br>
+    <section class="project-section" id="project-description">
+      <hr class="hline-2" />
+      <hr class="hline-2" />
+      <h1>Fourier Drawing</h1>
+      <hr class="hline-2" />
+      <hr class="hline-2" />
     </section>
 
-    <section class="project-animation">
-      <h1 class="project-subsection">Interactive Simulation</h1>
-      <h2 class="project-subsubsection">Drawing using Fourier Series</h2>
-      <ul class="project-instructions">
-        <li>Draw something into the canvas with your mouse.</li>
-        <li>Change the speed of the animation using the "Speed" slider.</li>
-        <li>Change the number of circles displayed using the "Number of Circles" slider.</li>
-        <li>Run the animation using the "Run" button.</li>
-        <li>Clear the canvas using the "Clear" button</li>
-      </ul>
-
-      <div class="embedding-screen">
-        <div class="embedding-head">
-          <h1 id="embedding-title">fourier.js</h1>
-          <div id="embedding-close-buttons">
-            <button class="embedding-button" id="embedding-button-1"></button>
-            <button class="embedding-button" id="embedding-button-2"></button>
-            <button class="embedding-button" id="embedding-button-3"></button>
+    <section class="project-section" id="project-animation">
+      <div id="animation-description">
+        <ul class="instructions-list">
+          <li>Draw something into the canvas with your mouse.</li>
+          <li>Change the speed of the animation using the "Speed" slider.</li>
+          <li>Change the number of circles displayed using the "Number of Circles" slider.</li>
+          <li>Run the animation using the "Run" button.</li>
+          <li>Clear the canvas using the "Clear" button</li>
+        </ul>
+      </div>
+      <div id="animation-embedding">
+        <div id="animation-title">
+          <div id="animation-title-threebuttons">
+            <button class="button"></button><button class="button"></button><button class="button"></button>
           </div>
+          <b id="animation-title-filename">vicsek.js</b>
         </div>
-        <hr id="embedding-hr" />
-        <div class="embedding-body">
-          <div class="project-widgets" id="project-fourier-widgets"></div>
-          <hr id="embedding-hr" />
-          <div class="project-animation" id="project-fourier-animation"></div>
+        <hr class="hline" />
+        <div id="animation-both">
+          <div id="animation-widgets"></div>
+          <hr class="hline" />
+          <div id="animation-canvas"></div>
+          <script src="fourier.js"></script>
         </div>
-        <script src="fourier.js"></script>
       </div>
     </section>
 

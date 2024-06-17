@@ -8,40 +8,26 @@ let mouseDown;
 let shift;
 
 function setup() {
-  let canvasDiv = document.getElementById("project-fourier-animation");
+  let canvasDiv = document.getElementById("animation-both");
   let w = canvasDiv.offsetWidth;
   let h = canvasDiv.offsetHeight;
   let can = createCanvas(w, int(w / 2));
 
-  can.parent("project-fourier-animation");
+  can.parent("animation-canvas");
 
   frameRate(60);
   shift = 0;
 
-  buttonRun = createButton("Play").mousePressed(start);
-  buttonReset = createButton("Clear").mousePressed(reset);
-  sliderSpeed = createSlider(1, 60, 40, 1);
-  sliderNbrCircles = createSlider(1, 2, 2, 1);
+  buttonRun = createButton("Play").mousePressed(start).style("width: 10%; height: 70%");
+  buttonReset = createButton("Clear").mousePressed(reset).style("width: 10%; height: 70%");
+  sliderSpeed = new Slider(1, 60, 40, 1, "Speed: ");
+  sliderNbrCircles = new Slider(1, 2, 2, 1, "Number of Circles: ");
 
-  speedText = createDiv("");
-
-  circleText = createDiv("");
-
-  buttonRun.parent("project-fourier-widgets");
-  buttonReset.parent("project-fourier-widgets");
-  sliderSpeed.parent("project-fourier-widgets");
-
-  speedText.parent("project-fourier-widgets");
-  sliderNbrCircles.parent("project-fourier-widgets");
-
-  circleText.parent("project-fourier-widgets");
+  buttonRun.parent("animation-widgets");
+  buttonReset.parent("animation-widgets");
 
   buttonRun.addClass("button");
   buttonReset.addClass("button");
-  sliderSpeed.addClass("slider");
-  speedText.addClass("text");
-  sliderNbrCircles.addClass("slider");
-  circleText.addClass("text");
 
   init();
 }
@@ -50,24 +36,9 @@ function draw() {
   background("#16161a");
   //background(0);
   frameRate(sliderSpeed.value());
-
-  speedText.html(
-    '<span style="color: #fffffe;">' +
-      "Speed (fps): " +
-      "</span>" +
-      '<span style="color: #7f5af0;">' +
-      str(sliderSpeed.value()) +
-      "</span>"
-  );
-
-  circleText.html(
-    '<span style="color: #fffffe;">' +
-      "Number of Circles: " +
-      "</span>" +
-      '<span style="color: #7f5af0;">' +
-      str(sliderNbrCircles.value()) +
-      "</span>"
-  );
+  sliderNbrCircles.update();
+  sliderNbrCircles.slider.attribute("max", points.length);
+  sliderSpeed.update();
 
   if (!run) {
     if (points.length == 0) {
@@ -258,5 +229,30 @@ function resizeCanvasToFitParent() {
   let parentWidth = document.getElementById("project-fourier-animation").clientWidth;
   let parentHeight = document.getElementById("project-fourier-animation").clientHeight;
   resizeCanvas(parentWidth, parentHeight);
+}
+
+class Slider {
+  constructor(min_, max_, start_, step_, label) {
+    this.label = label;
+    this.container = createDiv().class("slider-label").parent("animation-widgets");
+    this.slider = createSlider(min_, max_, start_, step_).parent(this.container).class("slider");
+
+    this.div = createDiv(label + str(this.slider.value()))
+      .parent(this.container)
+      .class("label");
+  }
+
+  update() {
+    this.div.html(this.label + str(this.slider.value()));
+  }
+
+  value() {
+    return round(this.slider.value(), 2);
+  }
+
+  setValue(val) {
+    this.slider.value(val);
+    this.div.html(this.label + str(val));
+  }
 }
 
