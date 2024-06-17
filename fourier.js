@@ -6,14 +6,12 @@ let time;
 let run;
 let mouseDown;
 let shift;
-
+let can;
 function setup() {
   let canvasDiv = document.getElementById("animation-both");
   let w = canvasDiv.offsetWidth;
   let h = canvasDiv.offsetHeight;
-  let can = createCanvas(w, int(w / 2));
-
-  can.parent("animation-canvas");
+  can = createCanvas(w, int(w / 2)).parent("animation-canvas");
 
   frameRate(60);
   shift = 0;
